@@ -1,2 +1,1 @@
-# hack-or-snooze
-This is a hack or snooze app
+# max-daniel-hack-or-snooze

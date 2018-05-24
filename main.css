@@ -1,0 +1,146 @@
+.nav{
+    width:100%;
+    height:30px;
+    background-color:rgb(255, 102, 0);
+}
+
+.flex-container{
+    display:flex;
+    padding-top:5px;
+}
+
+.flex-container > li{
+    list-style: none;
+    padding-left:20px;
+    text-decoration: none;
+}
+
+a{
+    list-style: none;
+    padding-left:20px;
+    text-decoration: none;  
+    color:black;
+}
+
+form{
+    margin-left:20px;
+    margin-top:20px;
+}
+
+span{
+    margin-left:8px;
+    font-size: 10px;
+}
+.larger-text{
+    font-size: 120%;
+}
+#posts, ul {
+    padding-top:20px;
+}
+
+.btn{
+    margin-top:20px;
+}
+
+#screen-cover{
+    position:fixed;
+    top:0;
+    left:0;
+    height:100%;
+    width:100%;
+    background-color:black;
+    opacity: 0.4;
+    z-index: 200;
+    display: none;
+}
+
+#signup-login-field,#user-info {
+    position: fixed;
+    top: 30%;
+    left: 35%;
+    min-width: 35%;
+    min-height: 35%;
+    z-index: 300;
+    background-color: rgb(255, 102, 0);
+    border: 1px solid grey;
+    border-radius: 10px;
+    box-shadow: 2px 2px black; 
+    display: none;
+}
+
+#signup-login-field > form {
+    z-index: 350;
+    margin: 10px;
+}
+
+#submit-story-form{
+    display: none;
+}
+
+#favorite-stories{
+    display:none;
+    list-style-type: none;
+}
+#profile-btn{
+    display:none;
+}
+.li__url{
+    color:grey;
+    padding-left: 0;
+    font-size: 150%
+}
+.li__url:hover{
+    color:grey;
+    text-decoration: none;
+}
+
+#favorites, #my-stories-btn, #submit, #submit-signup-btn, #logout-btn{
+    display:none;
+}
+
+#name-input-div{
+    display:none;
+}
+
+
+#user-info span{
+    font-size:30px;
+}
+#user-info{
+    padding: 20px;
+    min-height:10px;
+
+}
+
+#user-info h1{
+    text-align: center;
+}
+
+#update-story-field {
+    position: fixed;
+    top: 15%;
+    left: 15%;
+    min-width: 70%;
+    min-height: 35%;
+    z-index: 300;
+    background-color: white;
+    border: 1px solid grey;
+    border-radius: 10px;
+    box-shadow: 2px 2px black; 
+    display: none;
+}
+
+#pirate-icon {
+    border: solid .5px grey;
+    border-radius: 2px;
+}
+
+.btn-warning, .btn-danger {
+    margin: 2px 5px;
+}
+
+.btn-outline-secondary {
+    position: fixed;
+    bottom: 5px;
+    left: 5px;
+}
