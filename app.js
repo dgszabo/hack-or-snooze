@@ -28,6 +28,11 @@ function renderStories(){
                 Authorization: "Bearer " + localStorage.token
             }
         }).then(function(val){
+            $("#all-btn").hide();
+            $("#favorites-btn").show();
+            $("#my-stories-btn").show();
+            $(".btn-outline-secondary").fadeIn();  
+            
             for(var i = 0; i < val.data.favorites.length; i++){
                 $objOfIds[val.data.favorites[i].storyId] = 1;
             }
@@ -319,11 +324,10 @@ $form.on("submit", function(event){
     })
 })
 
-$submit.on("click", function(){
+$("#submit-btn").on("click", function(){
     if(localStorage.token){
         $form.toggle("hide");
-    }
-    
+    }  
 });
 
 //////////////////////////////////////////////////////
@@ -331,9 +335,6 @@ $submit.on("click", function(){
 // Functions and event listener related to all stories
 $("#all-btn").on("click", function(event) {
     event.preventDefault();
-    $("#all-btn").hide();
-    $("#favorites-btn").show();
-    $("#my-stories-btn").show();
     $lastFiftyStories = [];
     $scrollCounter = 10;
     $lastFavStories = [];
@@ -341,8 +342,7 @@ $("#all-btn").on("click", function(event) {
     $("#favorite-stories").hide();
     $("#my-stories").hide();
     renderStories();
-    $list.fadeIn();
-    $(".btn-outline-secondary").fadeIn();   
+    $list.fadeIn(); 
 });
 
 //////////////////////////////////////////////////////
@@ -388,36 +388,7 @@ $list.on("click", "i", function(event){
 })
 
 $("#favorites-btn").on("click", function(){
-    let $arrayOfData=[];
-    let $username = JSON.parse(atob(localStorage.token.split(".")[1])).username;
-    let $storyForm = $("#submit-story-form");
-    let $listOfStories = $("#posts");
-
-    $.ajax({
-        method: "GET",
-        url: "https://hack-or-snooze.herokuapp.com/users/" + $username,
-        headers: {
-            Authorization: "Bearer " + localStorage.token
-        }
-    }).then(function(val) {
-        $("#all-btn").show();
-        $("#favorites-btn").hide();
-        $arrayOfData = [].concat(val.data.favorites);
-        $("#favorite-stories").html("");
-        $(".btn-outline-secondary").fadeOut();
-
-        $storyForm.hide();
-        $listOfStories.hide();
-        $("#my-stories").hide();
-        $("#my-stories-btn").children().eq(0).text("My stories");
-        $("#favorite-stories").fadeIn();
-        
-        for(var i =0; i<arrayOfData.length; i++){
-            createAndAppendItem($arrayOfData[i], "#favorite-stories");
-            $("#favorite-stories > li").last().children().eq(0).removeClass("far fa-star");
-            $("#favorite-stories > li").last().children().eq(0).addClass("fas fa-star");
-        }
-    })
+    renderFavoriteStories();
 });
 
 $("#favorite-stories").on("click", "i", function(event) {
@@ -439,6 +410,40 @@ $("#favorite-stories").on("click", "i", function(event) {
         $(event.target).parent().fadeOut();
     })
 });
+
+function renderFavoriteStories() {
+    let $arrayOfData=[];
+    let $username = JSON.parse(atob(localStorage.token.split(".")[1])).username;
+    let $storyForm = $("#submit-story-form");
+    let $listOfStories = $("#posts");
+
+    $.ajax({
+        method: "GET",
+        url: "https://hack-or-snooze.herokuapp.com/users/" + $username,
+        headers: {
+            Authorization: "Bearer " + localStorage.token
+        }
+    }).then(function(val) {
+        $("#all-btn").show();
+        $("#favorites-btn").hide();
+        $("#my-stories-btn").show();
+        $arrayOfData = [].concat(val.data.favorites);
+        $("#favorite-stories").html("");
+        $(".btn-outline-secondary").fadeOut();
+
+        $storyForm.hide();
+        $listOfStories.hide();
+        $("#my-stories").hide();
+        $("#my-stories-btn").children().eq(0).text("My stories");
+        $("#favorite-stories").fadeIn();
+        
+        for(var i =0; i<arrayOfData.length; i++){
+            createAndAppendItem($arrayOfData[i], "#favorite-stories");
+            $("#favorite-stories > li").last().children().eq(0).removeClass("far fa-star");
+            $("#favorite-stories > li").last().children().eq(0).addClass("fas fa-star");
+        }
+    })
+}
 
 /////////////////////////////////////////////////////////////
 // OWN STORIES
@@ -466,6 +471,7 @@ function renderMyStories() {
         $("#all-btn").show();
         $(".btn-outline-secondary").fadeOut();
         $("#my-stories-btn").hide()
+        $("#favorites-btn").show()
         $arrayOfData = [].concat(val.data.stories);
         $ownStories = [].concat(val.data.stories);
         $("#my-stories").html("");
@@ -553,7 +559,7 @@ function userLoginCheck(){
         $("#profile-btn").show();
         $("#favorites-btn").show();
         $("#my-stories-btn").show();
-        $("#submit").show();
+        $("#submit-btn").show();
         $("#logout-btn").show();
         $("#sign-up-login-btn").hide();
     }
