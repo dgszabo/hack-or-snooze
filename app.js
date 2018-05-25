@@ -147,8 +147,15 @@ function infiniteScroll() {
             $batchCounter++;
 
             for(var i =0; i<10; i++){
-                createAndAppendItem(arrayOfData[i], "#posts");
-                if(!$lastFiftyStories[i]) {
+                if($lastFiftyStories[i]) {
+                    createAndAppendItem(arrayOfData[i], "#posts");
+                    if($lastFavStories[$("#posts > li").last().attr("id")]){
+                        $("#posts > li").last().children().eq(0).removeClass("far fa-star");
+                        $("#posts > li").last().children().eq(0).addClass("fas fa-star");
+                    }
+                $("#posts > li").last().css("display", "none");
+                $("#posts > li").last().fadeIn();
+                } else {
                     $scrollCounter = NaN;
                     $(".btn-outline-secondary").attr("checked", true);
                 }
