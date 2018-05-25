@@ -75,32 +75,33 @@ function renderStories(){
 // Helper function for rendering stories
 function createAndAppendItem(obj, target){
     let $post = $("<li>");
-     $post.attr("id", obj.storyId);
+    $post.attr("id", obj.storyId).addClass('my-2');
 
-     let $star = $("<i>").addClass("far fa-star");
-     $post.append($star);
-     
-     let $titleText = $("<span>");
-     $titleText.addClass("larger-text").text(obj.title);
+    let $star = $("<i>").addClass("far fa-star");
+    $post.append($star);
     
-     let $author = $("<span>");
+    let $titleText = $("<span>");
+    $titleText.addClass("larger-text").text(obj.title);
 
-     if(obj.author){
-        $author.addClass("author-text").text("By: " + obj.author) 
-     }else{
-        $author.addClass("author-text").text("By: anonymous") 
-     }
-     
-     let $fullUrl = obj.url;
-     let $parsedLink = getRootUrl($fullUrl);
-     let $displayUrl = $parsedLink.split(/[.,\/ ]/).splice(-2).join('.');
-     
-     let $urlSpan = $("<span>");
-    //  $urlA.attr("href", $fullUrl).text($displayUrl);
-     $urlSpan.html('<a class="li__url" target="_blank" href=' + $fullUrl + '>'+ "(" + $displayUrl + ")"+ '</a>');
-     $post.append($star).append($titleText).append($author).append($urlSpan);
-     
-     $(target).append($post);
+    let $break = $("<br>")
+    let $author = $("<span>");
+
+    if(obj.author){
+    $author.addClass("author-text").text("By: " + obj.author) 
+    }else{
+    $author.addClass("author-text").text("By: anonymous") 
+    }
+    
+    let $fullUrl = obj.url;
+    let $parsedLink = getRootUrl($fullUrl);
+    let $displayUrl = $parsedLink.split(/[.,\/ ]/).splice(-2).join('.');
+    
+    let $urlSpan = $("<span>");
+    $urlSpan.html('<a class="li__url" target="_blank" href=' + $fullUrl + '>'+ "(" + $displayUrl + ")"+ '</a>');
+    
+    $post.append($star).append($titleText).append($break).append($author).append($urlSpan);
+    
+    $(target).append($post);
 }
 
 function getRootUrl(url) {
@@ -585,7 +586,7 @@ $("#profile-btn").click(function(){
 });
 
 /////////////////////////////////////////////////////////////////
-// OTHER STUFF
+// MISCELLANEOUS FUNCTIONS
 function getAuthorName() {
     let $username = JSON.parse(atob(localStorage.token.split(".")[1])).username;
     

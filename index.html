@@ -1,114 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.6/css/all.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="main.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="shortcut icon" type="image/png" href="hacker-pirate.jpg"/>
     <title>Hack || Snooze</title>
+
+    <!-- Start of FontAwesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.6/css/all.css">
+    <!-- End of FontAwesome -->
+    <!-- Start of Bootstrap elements -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- End of Bootstrap elements -->
+    <link rel="stylesheet" href="main.css">
+
 </head>
 <body>
-    <div class = "nav fixed-top">
-        <ul class = "flex-container">
-            <a href=""></a>
-            <li><img id="pirate-icon" alt="Pirate icon" src="hacker-pirate-lg.jpg" height="15" width="20"> Hack || Snooze</li>
-            <li id = "submit"><a href = "#">Submit</a></li>
-            <li id = "favorites"><a id = "all" href = "#">Favorites</a></li>
-            <li id ="my-stories-btn"><a href = "#">My stories</a></li>
-            <li id ="sign-up-login"><a href = "#">Sign Up/Login</a></li>
-            <li id ="profile-btn"><a href = "#">Profile</a></li>
-            <li id ="logout-btn"><a href = "#">Logout</a></li>
-        </ul>
-    </div>
-    <form id="submit-story-form" class="mt-5">
-        <div class="form-group">
-          <label for="title">Title</label>
-          <input type="text" class="form-control" id="title" aria-describedby="emailHelp" placeholder="Enter Title">
-        </div>
-
-        <!-- <div class="form-group">
-          <label for="exampleInputEmail1">Story</label>
-          <textarea class= "form-control" id="story-text" rows=“3” placeholder="Enter Story"></textarea>
-        </div> -->
-        
-
-        <div class="form-group">
-          <label for="link">Link</label>
-          <input type="url" class="form-control" id="link" placeholder="Enter Link">
-        </div>
-        
-        
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-
-    <ol id = "posts" class="mt-4">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-light d-flex justify-content-between">
+        <a class="navbar-brand ml-0 mr-auto" href="#">
+          <img id="pirate-icon" alt="Pirate icon" src="hacker-pirate-lg.jpg" height="15" width="20">
+          Hack || Snooze
+        </a>
+        <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
       
-    </ol>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-0 ml-auto">
+            <li id = "submit" class="nav-item">
+              <a class="nav-link" href="#">Submit</a>
+            </li>
+            <li id = "favorites" class="nav-item">
+              <a class="nav-link" id = "all" href = "#">Favorites</a>
+            </li>
+            <li id ="my-stories-btn" class="nav-item">
+              <a class="nav-link" href = "#">My stories</a>
+            </li>
+            <li id ="sign-up-login" class="nav-item">
+              <a class="nav-link" href = "#">Sign Up/Login</a>
+            </li>
+            <li id ="profile-btn" class="nav-item">
+              <a class="nav-link" href = "#">Profile</a>
+            </li>
+            <li id ="logout-btn" class="nav-item">
+              <a class="nav-link" href = "#">Logout</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      
+      <form id="submit-story-form" class="mt-5">
+          <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" id="title" aria-describedby="emailHelp" placeholder="Enter Title">
+          </div>
 
-    <ul id = "favorite-stories" class="my-4"></ul>
-
-    <ul id = "my-stories" class="mt-4"></ul>
-
-    <div id = "screen-cover"></div>
-    
-    <div id = "signup-login-field">
-      <form>
-          <div class="text-center">
-              <button type="submit" class="btn btn-secondary" disabled id="login-toggle-btn">Login</button>
-              <button type="submit" class="btn btn-secondary" id="signup-toggle-btn">Sign-up</button>
-            </div>
-        <div id= "name-input-div" class="form-group">
-          <label for="exampleInputEmail1">Name</label>
-          <input type="text" class="form-control" id="name-input" placeholder="Name">
-        </div>
-        <div class="form-group">
-          <label for="exampleInputEmail1">User name</label>
-          <input type="text" class="form-control" id="username-input" placeholder="User name" required>
-        </div>
-        <div class="form-group">
-          <label for="exampleInputPassword1">Password</label>
-          <input type="password" class="form-control" id="password-input" placeholder="Password" required>
-        </div>
-        <div class="d-flex justify-content-around">
-          <button type="submit" class="btn btn-primary" id="submit-login-btn">Login</button>
-          <button type="submit" class="btn btn-primary" id="submit-signup-btn">Sign-up</button>
-        </div>
-        
+          <div class="form-group">
+            <label for="link">Link</label>
+            <input type="url" class="form-control" id="link" placeholder="Enter Link">
+          </div>
+          
+          <button type="submit" class="btn btn-primary">Submit</button>
       </form>
-    </div>
 
-    <div id = "user-info">
-      <h1>User Info</h1>
-      <h5>Name: <span id ="user-info-name"></span></h5>
-      <h5>Username: <span id = "user-info-username"></span></h5>
-    </div>
+      <ol id = "posts" class="mt-4">
+        
+      </ol>
 
-    <div id="update-story-field">
-        <form id="update-story-form" class="m-4">
-            <div class="form-group">
-              <label for="title">Title</label>
-              <input type="text" class="form-control" id="update-title" aria-describedby="emailHelp" placeholder="Update Title"> 
-            </div>
-    
-            <!-- <div class="form-group">
-              <label for="exampleInputEmail1">Story</label>
-              <textarea class= "form-control" id="story-text" rows=“3” placeholder="Update Story"></textarea>
-            </div> -->
-            
-    
-            <div class="form-group">
-              <label for="update-link">Link</label>
-              <input type="url" class="form-control" id="update-link" placeholder="Update Link">
-            </div>
-            
-            
-            <button type="submit" class="btn btn-primary" id="update-story-btn">Update</button>
+      <ul id = "favorite-stories" class="my-4"></ul>
+
+      <ul id = "my-stories" class="mt-4"></ul>
+
+      <div id = "screen-cover"></div>
+      
+      <div id = "signup-login-field">
+        <form>
+            <div class="text-center">
+                <button type="submit" class="btn btn-secondary" disabled id="login-toggle-btn">Login</button>
+                <button type="submit" class="btn btn-secondary" id="signup-toggle-btn">Sign-up</button>
+              </div>
+          <div id= "name-input-div" class="form-group">
+            <label for="exampleInputEmail1">Name</label>
+            <input type="text" class="form-control" id="name-input" placeholder="Name">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">User name</label>
+            <input type="text" class="form-control" id="username-input" placeholder="User name" required>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="password-input" placeholder="Password" required>
+          </div>
+          <div class="d-flex justify-content-around">
+            <button type="submit" class="btn btn-primary" id="submit-login-btn">Login</button>
+            <button type="submit" class="btn btn-primary" id="submit-signup-btn">Sign-up</button>
+          </div>
+          
         </form>
+      </div>
+
+      <div id = "user-info">
+        <h1>User Info</h1>
+        <h5>Name: <span id ="user-info-name"></span></h5>
+        <h5>Username: <span id = "user-info-username"></span></h5>
+      </div>
+
+      <div id="update-story-field">
+          <form id="update-story-form" class="m-4">
+              <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" class="form-control" id="update-title" aria-describedby="emailHelp" placeholder="Update Title"> 
+              </div>
+      
+              <!-- <div class="form-group">
+                <label for="exampleInputEmail1">Story</label>
+                <textarea class= "form-control" id="story-text" rows=“3” placeholder="Update Story"></textarea>
+              </div> -->
+              
+      
+              <div class="form-group">
+                <label for="update-link">Link</label>
+                <input type="url" class="form-control" id="update-link" placeholder="Update Link">
+              </div>
+              
+              
+              <button type="submit" class="btn btn-primary" id="update-story-btn">Update</button>
+          </form>
+      </div>
+      <button type="button" class="btn btn-outline-secondary btn-block">Press enter or space to load more stories</button>
     </div>
-    <button type="button" class="btn btn-outline-secondary btn-block">Push enter or space to load more stories</button>
 
 <script src="http://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>       
 
