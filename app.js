@@ -3,7 +3,6 @@
 var arrayOfData = [];
 var $list = $("#posts")
 var $form = $("#submit-story-form");
-var $favorites = $("#favorites");
 var $submit = $("#submit");
 var $all = $("#all");
 var $lastFiftyStories = [];
@@ -29,8 +28,7 @@ function renderStories(){
                 Authorization: "Bearer " + localStorage.token
             }
         }).then(function(val){
-            
-            for(var i =0; i<val.data.favorites.length; i++){
+            for(var i = 0; i < val.data.favorites.length; i++){
                 $objOfIds[val.data.favorites[i].storyId] = 1;
             }
             
@@ -44,8 +42,7 @@ function renderStories(){
                 arrayOfData = [].concat(val.data);
                 $lastFiftyStories = [].concat(val.data);
                
-                for(var i =0; i<10; i++){
-                    
+                for(var i = 0; i < 10; i++){
                     createAndAppendItem(arrayOfData[i], "#posts");
                     if($objOfIds[$("#posts > li").last().attr("id")]){
                         $("#posts > li").last().children().eq(0).removeClass("far fa-star");
@@ -112,7 +109,7 @@ function getRootUrl(url) {
 // INFINITE SCROLL
 $(document).keypress(function(event) {
     if(event.which === 32 || event.which === 13) {
-        if($(".flex-container").children().eq(3).children().eq(0).text() === "Favorites" && $(".flex-container").children().eq(4).children().eq(0).text() === "My stories" && $("#submit-story-form").css("display") === "none" && $("#screen-cover").css("display") === "none") {
+        if($("#favorites-btn").css("display") === "block" && $("#my-stories-btn").css("display") === "block" && $("#submit-story-form").css("display") === "none" && $("#screen-cover").css("display") === "none") {
             infiniteScroll();
         }
     } 
@@ -151,15 +148,7 @@ function infiniteScroll() {
 
             for(var i =0; i<10; i++){
                 createAndAppendItem(arrayOfData[i], "#posts");
-                if($lastFiftyStories[i]) {
-                    createAndAppendItem(arrayOfData[i], "#posts");
-                    if($lastFavStories[$("#posts > li").last().attr("id")]){
-                        $("#posts > li").last().children().eq(0).removeClass("far fa-star");
-                        $("#posts > li").last().children().eq(0).addClass("fas fa-star");
-                    }
-                $("#posts > li").last().css("display", "none");
-                $("#posts > li").last().fadeIn();
-                } else {
+                if(!$lastFiftyStories[i]) {
                     $scrollCounter = NaN;
                     $(".btn-outline-secondary").attr("checked", true);
                 }
@@ -172,16 +161,17 @@ function infiniteScroll() {
 //SIGNUP -- LOGIN FIELD
 // Functions and eventlisteners related to sign-up or login
 $("#screen-cover").on("click", function() {
-    $("#screen-cover").fadeToggle();
+    $("#screen-cover").fadeOut();
     $("#signup-login-field").fadeOut();
     $("#user-info").fadeOut();
     $("#update-story-field").fadeOut();
 });
 
-$("#sign-up-login").on("click", function() {
+$("#sign-up-login-btn").on("click", function() {
     $("#screen-cover").fadeToggle();
     $("#signup-login-field").fadeToggle();
 });
+
 $("#login-toggle-btn").on("click", function(){
     $("#name-input").parent().fadeOut();
     $("#submit-signup-btn").hide();
@@ -202,7 +192,7 @@ $("#logout-btn").on("click", function(){
     localStorage.clear();
     $(".flex-container").children().eq(5).children().eq(0).text("Sign Up/Login");
     $("#profile-btn").hide();
-    $("#favorites").hide();
+    $("#favorites-btn").hide();
     $("#my-stories-btn").hide();
     $("#submit").hide()
     $("#favorite-stories").fadeOut();
@@ -247,7 +237,7 @@ $("#submit-signup-btn").click(function(event) {
             $(".flex-container").children().eq(4).children().eq(0).text("My stories");
             $(".flex-container").children().eq(5).children().eq(0).text("Logged In");
             $("#profile-btn").show();
-            $("#favorites").show();
+            $("#favorites-btn").show();
             $("#my-stories-btn").show();
             $("#submit").show();
             $("#logout-btn").show();
@@ -280,7 +270,7 @@ $("#submit-login-btn").click(function(event){
         $(".flex-container").children().eq(4).children().eq(0).text("My stories");
         $(".flex-container").children().eq(5).children().eq(0).text("Logged In");
         $("#profile-btn").show();
-        $("#favorites").show();
+        $("#favorites-btn").show();
         $("#my-stories-btn").show();
         $("#submit").show();
         $("#logout-btn").show();
@@ -373,7 +363,7 @@ $list.on("click", "i", function(event){
     }
 })
 
-$favorites.on("click", function(){
+$("#favorites-btn").on("click", function(){
     let $arrayOfData=[];
     let $username = JSON.parse(atob(localStorage.token.split(".")[1])).username;
     let $storyForm = $("#submit-story-form");
@@ -558,9 +548,8 @@ $("#update-story-btn").on("click", function(event) {
 
 function userLoginCheck(){
     if(localStorage.token){
-        $(".flex-container").children().eq(5).children().eq(0).text("Logged In");
         $("#profile-btn").show();
-        $("#favorites").show();
+        $("#favorites-btn").show();
         $("#my-stories-btn").show();
         $("#submit").show();
         $("#logout-btn").show();

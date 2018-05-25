@@ -9,14 +9,19 @@ html, body {
     margin: 4vh auto 0 auto;
     padding: 0;
     background-color: blanchedalmond;
-    border-radius: 1vh;
+    border-radius: 2vh 1vh 1vh 2vh;
 }
 
 .navbar {
     margin: 2vh auto;
     background-color:rgb(255, 102, 0) !important;
-    border: 0.5vh solid rgb(126,51,16);
+    border: 1px solid rgb(126,51,16);
     border-radius: 2vh;
+}
+
+#navbarSupportedContent {
+    width: auto;
+    padding-right: 0 !important;
 }
 
 a {

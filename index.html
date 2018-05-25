@@ -22,7 +22,7 @@
 <body>
     <div class="container">
       <nav class="navbar navbar-expand-lg navbar-light d-flex justify-content-between">
-        <a class="navbar-brand ml-0 mr-auto" href="#">
+        <a class="navbar-brand ml-0 mr-auto pl-1" href="#">
           <img id="pirate-icon" alt="Pirate icon" src="hacker-pirate-lg.jpg" height="15" width="20">
           Hack || Snooze
         </a>
@@ -31,23 +31,26 @@
         </button>
       
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-0 ml-auto">
-            <li id = "submit" class="nav-item">
+          <ul class="navbar-nav mr-0 ml-auto pr-1 py-2">
+            <li id = "submit-btn" class="nav-item" style="display:none">
               <a class="nav-link" href="#">Submit</a>
             </li>
-            <li id = "favorites" class="nav-item">
+            <li id = "all-btn" class="nav-item" style="display:none">
+              <a class="nav-link" href="#">All</a>
+            </li>
+            <li id = "favorites-btn" class="nav-item" style="display:none">
               <a class="nav-link" id = "all" href = "#">Favorites</a>
             </li>
-            <li id ="my-stories-btn" class="nav-item">
+            <li id ="my-stories-btn" class="nav-item" style="display:none">
               <a class="nav-link" href = "#">My stories</a>
             </li>
-            <li id ="sign-up-login" class="nav-item">
+            <li id ="sign-up-login-btn" class="nav-item">
               <a class="nav-link" href = "#">Sign Up/Login</a>
             </li>
-            <li id ="profile-btn" class="nav-item">
+            <li id ="profile-btn" class="nav-item" style="display:none">
               <a class="nav-link" href = "#">Profile</a>
             </li>
-            <li id ="logout-btn" class="nav-item">
+            <li id ="logout-btn" class="nav-item" style="display:none">
               <a class="nav-link" href = "#">Logout</a>
             </li>
           </ul>
@@ -85,20 +88,20 @@
                 <button type="submit" class="btn btn-secondary" id="signup-toggle-btn">Sign-up</button>
               </div>
           <div id= "name-input-div" class="form-group">
-            <label for="exampleInputEmail1">Name</label>
+            <label for="name-input">Name</label>
             <input type="text" class="form-control" id="name-input" placeholder="Name">
           </div>
           <div class="form-group">
-            <label for="exampleInputEmail1">User name</label>
+            <label for="username-input">User name</label>
             <input type="text" class="form-control" id="username-input" placeholder="User name" required>
           </div>
           <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
+            <label for="password-input">Password</label>
             <input type="password" class="form-control" id="password-input" placeholder="Password" required>
           </div>
           <div class="d-flex justify-content-around">
-            <button type="submit" class="btn btn-primary" id="submit-login-btn">Login</button>
-            <button type="submit" class="btn btn-primary" id="submit-signup-btn">Sign-up</button>
+            <button class="btn btn-primary" id="submit-login-btn">Login</button>
+            <button class="btn btn-primary" id="submit-signup-btn">Sign-up</button>
           </div>
           
         </form>
@@ -116,13 +119,7 @@
                 <label for="title">Title</label>
                 <input type="text" class="form-control" id="update-title" aria-describedby="emailHelp" placeholder="Update Title"> 
               </div>
-      
-              <!-- <div class="form-group">
-                <label for="exampleInputEmail1">Story</label>
-                <textarea class= "form-control" id="story-text" rows=“3” placeholder="Update Story"></textarea>
-              </div> -->
-              
-      
+
               <div class="form-group">
                 <label for="update-link">Link</label>
                 <input type="url" class="form-control" id="update-link" placeholder="Update Link">
