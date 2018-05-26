@@ -20,7 +20,7 @@
 
 </head>
 <body>
-    <div class="container pb-4">
+    <div class="container pb-4 my-2">
       <nav class="navbar navbar-expand-lg navbar-light d-flex justify-content-between">
         <a class="navbar-brand ml-0 mr-auto pl-1" href="#">
           <img id="pirate-icon" alt="Pirate icon" src="hacker-pirate-lg.jpg" height="15" width="20">
@@ -60,15 +60,19 @@
       <form id="submit-story-form" class="mt-2 mb-4 mx-5">
           <div class="form-group mx-5">
             <label for="title">Title</label>
-            <input type="text" class="form-control" id="title" aria-describedby="emailHelp" placeholder="Enter Title">
+            <input type="text" class="form-control" id="title" placeholder="Enter Title" required maxlength="75">
+            <small class="form-text text-muted">The title may be maximum 75 characters long.</small>
           </div>
 
           <div class="form-group mx-5">
             <label for="link">Link</label>
-            <input type="url" class="form-control" id="link" placeholder="Enter Link">
+            <input type="url" class="form-control" id="link" placeholder="Enter Link" required>
+            <div class="invalid-tooltip">
+                Please provide a valid URL.
+            </div>
           </div>
           
-          <button type="submit" class="btn btn-primary ml-5">Submit</button>
+          <button type="submit" class="btn btn-secondary ml-5">Submit</button>
       </form>
 
       <ol id = "posts" class="mt-1 pt-0">
@@ -129,7 +133,7 @@
               <button type="submit" class="btn btn-primary" id="update-story-btn">Update</button>
           </form>
       </div>
-      <button type="button" class="btn btn-outline-secondary btn-block">Press enter or space to load more stories</button>
+      <button type="button" class="btn btn-outline-secondary btn-block">Press bar to load more stories</button>
     </div>
 
 <script src="http://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>       

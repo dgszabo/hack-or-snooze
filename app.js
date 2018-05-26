@@ -94,7 +94,7 @@ function createAndAppendItem(obj, target){
     $author.addClass("author-text").text("By: anonymous") 
     }
     
-    let $fullUrl = obj.url;
+    let $fullUrl = obj.url.slice(-1,) === "/" ? obj.url.slice(0,-1) : obj.url;;
     let $parsedLink = getRootUrl($fullUrl);
     let $displayUrl = $parsedLink.split(/[.,\/ ]/).splice(-2).join('.');
     
