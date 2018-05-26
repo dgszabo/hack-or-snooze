@@ -69,6 +69,7 @@ function renderStories(){
             
             for(var i =0; i<10; i++){
                 createAndAppendItem(arrayOfData[i], "#posts");
+                $("#posts > li").last().children().eq(0).removeClass("far fa-star");
             }
         })
     } 
@@ -129,9 +130,13 @@ function infiniteScroll() {
         for(var i = $scrollCounter; i < $scrollCounter + 10; i++){    
             if($lastFiftyStories[i]) {
                 createAndAppendItem(arrayOfData[i], "#posts");
-                if($lastFavStories[$("#posts > li").last().attr("id")]){
+                if(localStorage.token) {
+                    if($lastFavStories[$("#posts > li").last().attr("id")]){
+                        $("#posts > li").last().children().eq(0).removeClass("far fa-star");
+                        $("#posts > li").last().children().eq(0).addClass("fas fa-star");
+                    }
+                } else {
                     $("#posts > li").last().children().eq(0).removeClass("far fa-star");
-                    $("#posts > li").last().children().eq(0).addClass("fas fa-star");
                 }
             $("#posts > li").last().css("display", "none");
             $("#posts > li").last().fadeIn();
@@ -202,16 +207,17 @@ $("#signup-toggle-btn").on("click", function(){
 
 $("#logout-btn").on("click", function(){
     localStorage.clear();
-    $(".flex-container").children().eq(5).children().eq(0).text("Sign Up/Login");
+    $("sign-up-login-btn").show();
     $("#profile-btn").hide();
     $("#favorites-btn").hide();
     $("#my-stories-btn").hide();
-    $("#submit").hide()
-    $("#favorite-stories").fadeOut();
-    $("#my-stories").fadeOut();
-    $("#posts").fadeIn();
-    $(this).hide();
+    $("#submit-btn").hide()
+    $("#logout-btn").hide()
+    $("#favorite-stories").hide();
+    $("#my-stories").hide();
     $("#posts").html("");
+    $("#posts").fadeIn();
+    $(".btn-outline-secondary").fadeIn();
     $lastFavStories = [];
     renderStories();
 })
