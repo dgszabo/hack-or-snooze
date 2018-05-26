@@ -317,9 +317,21 @@ $form.on("submit", function(event){
             }
         }).then(function(val) {
             $list.html("");
-            renderStories();
             $form.slideUp();
             $form.trigger("reset");
+            var $lastFiftyStories = [];
+            var $scrollCounter = 10;
+            var $batchCounter = 1;
+            $("#posts").html("");
+            $("#posts").show();
+            $("#favorite-stories").html("");
+            $("#favorite-stories").hide();
+            $("#my-stories").html("");
+            $("#my-stories").hide();
+            renderStories();
+            $("#all-btn").hide();
+            $("#favorites-btn").show();
+            $("#my-stories-btn").show();
         })
     })
 })
