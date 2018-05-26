@@ -159,9 +159,13 @@ function infiniteScroll() {
             for(var i =0; i<10; i++){
                 if($lastFiftyStories[i]) {
                     createAndAppendItem(arrayOfData[i], "#posts");
-                    if($lastFavStories[$("#posts > li").last().attr("id")]){
+                    if(localStorage.token) {
+                        if($lastFavStories[$("#posts > li").last().attr("id")]){
+                            $("#posts > li").last().children().eq(0).removeClass("far fa-star");
+                            $("#posts > li").last().children().eq(0).addClass("fas fa-star");
+                        }
+                    } else {
                         $("#posts > li").last().children().eq(0).removeClass("far fa-star");
-                        $("#posts > li").last().children().eq(0).addClass("fas fa-star");
                     }
                 $("#posts > li").last().css("display", "none");
                 $("#posts > li").last().fadeIn();
@@ -219,6 +223,9 @@ $("#logout-btn").on("click", function(){
     $("#posts").fadeIn();
     $(".btn-outline-secondary").fadeIn();
     $lastFavStories = [];
+    $lastFiftyStories = [];
+    $scrollCounter = 10;
+    $batchCounter = 1;
     renderStories();
 })
 $("#submit-signup-btn").click(function(event) {
