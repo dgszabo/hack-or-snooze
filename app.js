@@ -211,7 +211,7 @@ $("#signup-toggle-btn").on("click", function(){
 
 $("#logout-btn").on("click", function(){
     localStorage.clear();
-    $("sign-up-login-btn").show();
+    $("#sign-up-login-btn").show();
     $("#profile-btn").hide();
     $("#favorites-btn").hide();
     $("#my-stories-btn").hide();
@@ -258,15 +258,18 @@ $("#submit-signup-btn").click(function(event) {
         }).then(function(val) {
             localStorage.setItem("token", val.data.token);
             localStorage.setItem("username", $username);
-            $(".flex-container").children().eq(3).children().eq(0).text("Favorites");
-            $(".flex-container").children().eq(4).children().eq(0).text("My stories");
-            $(".flex-container").children().eq(5).children().eq(0).text("Logged In");
-            $("#profile-btn").show();
+            $("#sign-up-login-btn").hide();
             $("#favorites-btn").show();
             $("#my-stories-btn").show();
-            $("#submit").show();
+            $("#profile-btn").show();
+            $("#submit-btn").show();
             $("#logout-btn").show();
             $("#signup-login-field form").trigger("reset");
+            $("#posts").html("");
+            $lastFiftyStories = [];
+            $scrollCounter = 10;
+            $batchCounter = 1;
+            renderStories();
             $("#screen-cover").fadeToggle();
             $("#signup-login-field").fadeToggle();
         })
@@ -298,6 +301,11 @@ $("#submit-login-btn").click(function(event){
         $("#submit-btn").show();
         $("#logout-btn").show();
         $("#signup-login-field form").trigger("reset");
+        $("#posts").html("");
+        $lastFiftyStories = [];
+        $scrollCounter = 10;
+        $batchCounter = 1;
+        renderStories();
         $("#screen-cover").fadeToggle();
         $("#signup-login-field").fadeToggle();
     })
